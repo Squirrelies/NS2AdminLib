@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using NS2AdminLib.Common;
+﻿using NS2AdminLib.Common;
 using NS2AdminLib.JSONClasses;
 using System;
 using System.Net;
+using System.Web.Script.Serialization;
 
 namespace NS2AdminLib
 {
@@ -22,7 +22,7 @@ namespace NS2AdminLib
         public NS2ServerInfo GetServerInfo()
         {
             string response = JSON.GetJSONData(this.baseURL, this.credentials, false);
-            return JsonConvert.DeserializeObject<NS2ServerInfo>(response);
+            return new JavaScriptSerializer().Deserialize<NS2ServerInfo>(response);
         }
 
         public string Rcon(string command)
